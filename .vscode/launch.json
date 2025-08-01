@@ -1,0 +1,119 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {   // text2api
+            "name": "text2api",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./src/text2api.py",
+            "args": [
+                "--db_root_path", "./datasets/birdsql/dev_20240627/dev_databases/",
+                "--eval_path", "./datasets/birdsql/dev_20240627/dev.json",
+                "--data_output_path", "./exp_result/DeepSeek-V3-0324_MSchema_debug", 
+                "--schema_type", "m_schema",
+                "--schema_path", "./archive/dev-schema",
+                "--use_knowledge",
+                "--mode", "dev",
+                "--api_name", "DeepSeek-chat",
+                "--api_key", "<>",
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "PATH": "/home/luban/.local/bin:${env:PATH}",
+                "MASTER_ADDR": "localhost",
+                "MASTER_PORT": "29500",
+                "WORLD_SIZE": "1",
+                "RANK": "0",
+                "LOCAL_RANK": "0"
+            },
+        },
+        {   // text2llm
+            "name": "text2llm",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./src/text2llm.py",
+            "args": [
+                "--db_root_path", "./datasets/birdsql/dev_20240627/dev_databases/",
+                "--eval_path", "./datasets/birdsql/dev_20240627/dev.json",
+                "--data_output_path", "./exp_result/XiYanSQL-QwenCoder-32B-2504_debug", 
+                "--schema_type", "m_schema",
+                "--schema_path", "./archive/dev-schema",
+                "--mode", "dev",
+                "--model_name", "XGenerationLab/XiYanSQL-QwenCoder-32B-2504",
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "PATH": "/home/luban/.local/bin:${env:PATH}",
+                "MASTER_ADDR": "localhost",
+                "MASTER_PORT": "29500",
+                "WORLD_SIZE": "1",
+                "RANK": "0",
+                "LOCAL_RANK": "0"
+            },
+        },
+
+        {   // eval-ex
+            "name": "eval-ex",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./src/eval_ex.py",
+            "justMyCode": false,
+            "subProcess": true,
+            "args": [
+                "--db_root_path", "./datasets/birdsql/dev_20240627/dev_databases/",
+                "--diff_json_path", "./datasets/birdsql/dev_20240627/dev.json",
+                "--predicted_sql_path", "./exp_result/deepseek_chat_w_kg_wo_CoT_strict/", 
+                "--ground_truth_path", "./datasets/birdsql/dev_20240627/", 
+                "--data_mode", "dev",
+                "--num_cpus", "16",
+                "--meta_time_out", "30.0",
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "PATH": "/home/luban/.local/bin:${env:PATH}",
+                "MASTER_ADDR": "localhost",
+                "MASTER_PORT": "29500",
+                "WORLD_SIZE": "1",
+                "RANK": "0",
+                "LOCAL_RANK": "0"
+            },
+        },
+
+        {   // csc-pipeline
+            "name": "csc-pipeline",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./src/csc_pipeline.py",
+            "justMyCode": false,
+            "subProcess": true,
+            "args": [
+                "--model_sql_generate", "XGenerationLab/XiYanSQL-QwenCoder-32B-2504",
+                "--model_sql_merge", "cyclonebo/CscSQL-Merge-Qwen2.5-Coder-7B-Instruct",
+
+                "--example_rows", "3",
+                "--schema_type", "m_schema",
+                "--schema_dir", "./archive/dev-schema",
+                "--raw_dir", "./archive",
+
+                "--gold_file", "./datasets/birdsql/dev_20240627/dev.sql",
+                "--eval_path", "./datasets/birdsql/dev_20240627/dev.json",
+                "--db_path", "./datasets/birdsql/dev_20240627/dev_databases/",
+                "--output_dir", "./exp_result/CSCSQL-Debug",
+
+                "--visible_devices", "0,1",
+                "--tensor_parallel_size", "2",
+                "--gpu_memory_utilization", "0.95",
+                "--seed", "42",
+
+                "--n_sql_generate", "16",
+                "--temperature_sql_generate", "0.8",
+                "--n_sql_merge", "8",
+                "--temperature_sql_merge", "0.8",
+
+                "--sql_generate",
+                "--sql_merge",
+            ],
+            "console": "integratedTerminal",
+        },
+    ],
+}
