@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository provides practice on text2SQL task (Understanding natural language and generating SQL queries)
+This repository provides practice on text2SQL task (Understanding natural language and generating SQL queries).
 
 ## Summary
 
@@ -101,11 +101,12 @@ The experimental implementation can be categorized into two classes. First, I co
 </table>
 
 * Tips:
-  1. DeepSeek-V3-0324-wKg-Strict: using prompt template -> `Generate only the SQL query for the following requirement without any explanations, comments, or reasoning. \nBegin with ```sql, end with ``` `
+  1. DeepSeek-V3-0324-wKg-Strict: using prompt template: `Generate only the SQL query for the following requirement without any explanations, comments, or reasoning. \nBegin with ```sql, end with ``` `
   2.  DeepSeek-V3-0324-MSchema-wKg-Strict: ultilizing MSchema to substitute the default DDL-Schema
-  3.   eepSeek-V3-0324-MSchema-wKg-Instruction: using `FULL_SCHEMA_TEMPLATE`
-  4.   DeepSeek-V3-0324-DDLSchemaLinks-wKg-Instruction: using DeepSeek-V3-0324 to implement schema-linking
-  5.   XiYanSQL-QwenCoder-32B-2504_CSC-SQL_16g8m: generate nums 16, merge nums 8
+  3.  DeepSeek-V3-0324-MSchema-wKg-Instruction: using `FULL_SCHEMA_TEMPLATE`
+  4.  DeepSeek-V3-0324-DDLSchemaLinks-wKg-Instruction: using DeepSeek-V3-0324 to implement schema-linking
+  5.  XiYanSQL-QwenCoder-32B-2504_SC-16g: self-consistency, candidate nums 16
+  6.  XiYanSQL-QwenCoder-32B-2504_CSC-SQL_16g8m: generate nums 16, merge nums 8
   
 ### Analysis
 In this section, I demonstrate the approaches I have undertaken and provide some in-depth analysis of their respective outcomes.
