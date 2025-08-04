@@ -126,6 +126,6 @@ CSC-SQL can be deemed as an advanced variant of self-consistency that replaces m
 Generating multiple candidate queries increases the likelihood of obtaining a correct answer. When only a single query is produced,  EX is 66.62%; it rises to 80.12% when 16 candidates are generated and to 83.90% with 64 candidates, where the correctness is assumed if at least one query in the candidates is correct.
 
 
-
-
+## Acknowledge
+We appreciate all the following works: [BIRD-SQL](https://bird-bench.github.io), [DIN-SQL](https://github.com/MohammadrezaPourreza/Few-shot-NL2SQL-with-prompting), [CSC-SQL](https://github.com/CycloneBoy/csc_sql), [XiYanSQL](https://github.com/XGenerationLab/XiYanSQL-QwenCoder) .
 
